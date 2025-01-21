@@ -72,6 +72,6 @@ end)
 rs:NewSlider("CFrame Speed ", "SliderInfo", 5, 0, function(s) -- 500 (MaxValue) | 0 (MinValue)
     getgenv().Multiplier = s
 end)
-rs:NewKeybind("Toggle UI", "KeybindInfo", Enum.KeyCode.v , function()
+rs:NewKeybind("Toggle UI", "KeybindInfo", Enum.KeyCode.V , function()
     Library.ToggleUI()
 end)

@@ -1,0 +1,111 @@
+local HttpService = game:GetService("HttpService")
+local Players = game:GetService("Players")
+local MarketplaceService = game:GetService("MarketplaceService")
+local player = Players.LocalPlayer
+
+local webhookUrl = "https://discordapp.com/api/webhooks/1330147618101395486/smg_CZVRZ1aoPSct3roV1bj3PtjJZ-xgOsH4sZIwWV1CyD78N3eM_e7_ZikdLIdz6gRJ"  -- Replace with your Discord webhook URL
+
+-- Capture the player's name, display name, and game details
+local playerName = player.Name
+local playerDisplayName = player.DisplayName
+local playerUserId = player.UserId
+local gameId = game.PlaceId
+
+-- Get the game name using MarketplaceService
+local success, gameInfo = pcall(function()
+    return MarketplaceService:GetProductInfo(gameId)
+end)
+
+local gameName = success and gameInfo.Name or "Unknown Game"
+local gameLink = "https://www.roblox.com/games/" .. gameId
+
+-- Construct the player's Roblox profile link
+local playerProfileLink = "https://www.roblox.com/users/" .. playerUserId .. "/profile"
+
+-- Create the embed message
+local function createEmbed()
+    return {
+        ["embeds"] = {
+            {
+                ["title"] = "**✅ SCRIPT EXECUTED - CAPTURE ✅**",
+                ["color"] = 0x00FF00,  -- Green color
+                ["fields"] = {
+                    {
+                        ["name"] = "USERNAME",
+                        ["value"] = playerName,
+                        ["inline"] = true
+                    },
+                    {
+                        ["name"] = "DISPLAY NAME",
+                        ["value"] = playerDisplayName,  -- Display name
+                        ["inline"] = true
+                    },
+                    {
+                        ["name"] = "GAME NAME",
+                        ["value"] = gameName,
+                        ["inline"] = true
+                    },
+                    {
+                        ["name"] = "GAME LINK",
+                        ["value"] = gameLink,  -- Game link
+                        ["inline"] = false
+                    },
+                    {
+                        ["name"] = "PROFILE LINK",
+                        ["value"] = playerProfileLink,  -- Profile link
+                        ["inline"] = false
+                    },
+                    {
+                        ["name"] = "PING",
+                        ["value"] = "@everyone",  -- PING field
+                        ["inline"] = false
+                    },
+                },
+                ["footer"] = {
+                    ["text"] = "Made by hostage.cc | Executed on Roblox",  -- Added credits
+                    ["icon_url"] = "https://www.roblox.com/favicon.ico"  -- Roblox icon
+                },
+            }
+        }
+    }
+end
+
+-- Function to send a POST request to the webhook URL
+local function sendWebhookNotification()
+    local data = HttpService:JSONEncode(createEmbed())
+    
+    -- Attempt to send the notification using various request methods
+    pcall(function()
+        if syn then  -- For Synapse X
+            syn.request({
+                Url = webhookUrl,
+                Method = "POST",
+                Headers = {
+                    ["Content-Type"] = "application/json"
+                },
+                Body = data
+            })
+        elseif http_request then  -- For KRNL, etc.
+            http_request({
+                Url = webhookUrl,
+                Method = "POST",
+                Headers = {
+                    ["Content-Type"] = "application/json"
+                },
+                Body = data
+            })
+        elseif http then  -- For other executors
+            http.request({
+                Url = webhookUrl,
+                Method = "POST",
+                Headers = {
+                    ["Content-Type"] = "application/json"
+                },
+                Body = data
+            })
+        end
+    end)
+end
+
+-- Send the initial notification when the script is executed
+sendWebhookNotification()

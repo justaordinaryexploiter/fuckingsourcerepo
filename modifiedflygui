@@ -208,15 +208,15 @@ ToggleButton.MouseButton1Click:Connect(function()
     end
 end)
 
-game:GetService("UserInputService").InputBegan:Connect(function(input)
-  if input.UserInputType == Enum.UserInputType.Keyboard then
-    if input.KeyCode == Enum.Keycode.E then
-      if flying then
-          disableFlight()
-      else
-          enableFlight()
-      end
-end)
+function onKeyPress(inputObject)
+    if inputObject.KeyCode == Enum.KeyCode.E then
+        if flying then
+            disableFlight()
+        else
+            enableFlight()
+        end
+    end
+end
 
 plr.CharacterAdded:Connect(function(character)
     character:WaitForChild("Humanoid").Died:Connect(function()
@@ -273,3 +273,5 @@ UserInputService.InputChanged:Connect(function(input)
         updateSlider(input)
     end
 end)
+
+UserInputService.InputBegan:connect(onKeyPress)

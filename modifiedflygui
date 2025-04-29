@@ -1,4 +1,3 @@
-local UIS = game:GetService("UserInputService")
 local flySpeed = 60
 local minSpeed = 30
 local maxSpeed = 500
@@ -209,7 +208,7 @@ ToggleButton.MouseButton1Click:Connect(function()
     end
 end)
 
-UIS.InputBegan:Connect(function(input)
+game:GetService("UserInputService").InputBegan:Connect(function(input)
   if input.UserInputType == Enum.UserInputType.Keyboard then
     if input.KeyCode == Enum.Keycode.E then
       if flying then

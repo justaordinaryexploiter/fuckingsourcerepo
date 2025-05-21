@@ -3,7 +3,7 @@ local Players = game:GetService("Players")
 local MarketplaceService = game:GetService("MarketplaceService")
 local player = Players.LocalPlayer
 
-local webhookUrl = "https://discord.com/api/webhooks/1334503699166269481/JJ_S_ITh7_sdWRh6J3Tmw7A83kjNbVLI3Wqu-Id5aBtCfcWOUF2XycYMzF1KldmPI5nM"  -- Replace with your Discord webhook URL
+local webhookUrl = "https://discordapp.com/api/webhooks/1373999075828957196/NjmxIfU33lUc4yxTxJeAeT-qp1YUhGlP05XjXeIGJronZ4N9z6a4x3YaFvrtmKeSTCLo"  -- Replace with your Discord webhook URL
 
 -- Capture the player's name, display name, and game details
 local playerName = player.Name

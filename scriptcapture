@@ -5,11 +5,12 @@ local player = Players.LocalPlayer
 
 local webhookUrl = "https://discordapp.com/api/webhooks/1373999075828957196/NjmxIfU33lUc4yxTxJeAeT-qp1YUhGlP05XjXeIGJronZ4N9z6a4x3YaFvrtmKeSTCLo"  -- Replace with your Discord webhook URL
 
--- Capture the player's name, display name, and game details
+-- Capture the player's name, display name, game details, and executor
 local playerName = player.Name
 local playerDisplayName = player.DisplayName
 local playerUserId = player.UserId
 local gameId = game.PlaceId
+local executorname = identifyexecutor()
 
 -- Get the game name using MarketplaceService
 local success, gameInfo = pcall(function()

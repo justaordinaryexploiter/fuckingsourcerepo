@@ -2,7 +2,7 @@ local StarterGui = game:GetService("StarterGui")
 pcall(function()
     StarterGui:SetCore("SendNotification", {
         Title = "Made by: lumpia",
-        Text = "Press F to toggle",
+        Text = "Press E to toggle",
         Duration = 5,
     })
 end)
